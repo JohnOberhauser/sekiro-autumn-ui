@@ -9,7 +9,7 @@
     "ui"
   ],
   "license": "MIT",
-  "repository": "https://github.com/JohnOberhauser/one-dark-ui",
+  "repository": "https://github.com/JohnOberhauser/sekiro-autumn-ui",
   "main": "lib/main",
   "engines": {
     "atom": ">0.40.0"
