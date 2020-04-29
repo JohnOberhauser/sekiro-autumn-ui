@@ -1,5 +1,5 @@
 root = document.documentElement
-themeName = 'sekiro-autumn'
+themeName = 'sekiro-autumn-ui'
 
 
 module.exports =
