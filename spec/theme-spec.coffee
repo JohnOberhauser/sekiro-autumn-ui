@@ -1,4 +1,4 @@
-themeName = 'sekiro-autumn'
+themeName = 'sekiro-autumn-ui'
 
 describe "#{themeName} theme", ->
   beforeEach ->
