@@ -4,41 +4,20 @@
 
 @import "syntax-variables";
 
-.ui-syntax-color() { @syntax-background-color: hsl(220,24%,20%); } .ui-syntax-color(); // fallback color
+//.ui-syntax-color() { @syntax-background-color: hsl(220,24%,20%); } .ui-syntax-color(); // fallback color
 @ui-syntax-color: @syntax-background-color;
 
-// Color guards -----------------
-@ui-s-h: hue(@ui-syntax-color);
-@ui-s-s: saturation(@ui-syntax-color);
-@ui-s-l: lightness(@ui-syntax-color);
-@ui-inv: 10%; // inverse lightness if below
-
-.ui-hue() when (@ui-s-s = 0) { @ui-hue: 220; } // Use blue hue when no saturation
-.ui-hue() when (@ui-s-s > 0) { @ui-hue: @ui-s-h; }
-.ui-hue();
-
-.ui-saturation() when (@ui-s-h <=  80) { @ui-saturation: min(@ui-s-s,  5%); } // minimize saturation for brown
-.ui-saturation() when (@ui-s-h >   80) and (@ui-s-h <  160) { @ui-saturation: min(@ui-s-s, 12%); } // reduce saturation for green
-.ui-saturation() when (@ui-s-h >= 160) and (@ui-s-l <  @ui-inv) { @ui-saturation: min(@ui-s-s, 48%); } // limit max saturation for very dark backgrounds
-.ui-saturation() when (@ui-s-h >= 160) and (@ui-s-l >= @ui-inv) { @ui-saturation: @ui-s-s; }
-.ui-saturation();
-
-.ui-lightness() when (@ui-s-l <  @ui-inv) {
-  @ui-lightness: @ui-s-l + 8%; // increase lightness when too dark
-  @ui-lightness-border: @ui-lightness*.3;
-}
-.ui-lightness() when (@ui-s-l >= @ui-inv) {
-  @ui-lightness: min(@ui-s-l, 20%); // limit max lightness (for light syntax themes)
-  @ui-lightness-border: @ui-lightness*.6;
-}
-.ui-lightness();
+@ui-hue:          216;
+@ui-saturation:   55%;
+@ui-saturation-l:   37.9%;
+@ui-lightness:   2.5%;
+@ui-value:   3.4%;
+@ui-lightness-border: @ui-lightness*.3;
 
 // Main colors -----------------
 @ui-fg:     hsl(@ui-hue, min(@ui-saturation, 18%), max(@ui-lightness*3, 66%) );
-@ui-bg:     hsl(@ui-hue, @ui-saturation, @ui-lightness); // normalized @syntax-background-color
+@ui-bg:     hsl(@ui-hue, @ui-saturation-l, @ui-lightness);
 @ui-border: hsl(@ui-hue, @ui-saturation, @ui-lightness-border);
-
-
 
 
 // Custom variables
@@ -58,9 +37,9 @@
 
 
 // Background (Custom) -----------------
-@level-1-color: lighten(@base-background-color, 6%);
-@level-2-color: @base-background-color;
-@level-3-color: darken(@base-background-color, 3%);
+@level-1-color: lighten(@ui-bg, 6%);
+@level-2-color: @ui-bg;
+@level-3-color: darken(@ui-bg, 1%);
 
 @level-3-color-hover:  lighten(@level-3-color, 6%);
 @level-3-color-active: lighten(@level-3-color, 3%);
@@ -70,7 +49,7 @@
 @accent-luma:             luma( hsl(@ui-hue, 50%, 50%) ); // get lightness of current hue
 
 // used for marker, inputs (smaller things)
-@accent-color:            mix( hsv( @ui-hue, 100%, 66%), hsl( @ui-hue, 100%, 70%), @accent-luma ); // mix hsv + hsl (favor mostly hsl)
+@accent-color:            @hue-5;
 @accent-text-color:       contrast(@accent-color, hsl(@ui-hue,100%,10%), #fff, 25% );
 
 // used for button, tooltip (larger things)
