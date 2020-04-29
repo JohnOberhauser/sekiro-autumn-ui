@@ -1,13 +1,11 @@
 {
-  "name": "sekiro-autumn",
+  "name": "sekiro-autumn-ui",
   "theme": "ui",
-  "version": "1.12.5",
-  "description": "Atom One dark UI theme",
+  "version": "1.0.0",
+  "description": "Atom Sekiro Authumn UI theme based on One Dark",
   "keywords": [
     "sekiro",
     "autumn",
-    "dark",
-    "adaptive",
     "ui"
   ],
   "license": "MIT",
